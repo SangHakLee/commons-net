@@ -426,4 +426,36 @@ public class SubnetUtilsTest extends TestCase {
         final SubnetUtils snu = new SubnetUtils("0.0.0.0/0");
         assertNotNull(snu);
     }
+
+    public void testCidrNotation() {
+        SubnetUtils utils = new SubnetUtils("192.168.0.1/0");
+        SubnetInfo info = utils.getInfo();
+        assertEquals("0", info.getCidrNotation());
+
+        utils = new SubnetUtils("192.168.0.1/00");
+        info = utils.getInfo();
+        assertEquals("0", info.getCidrNotation());
+
+        utils = new SubnetUtils("192.168.0.1/1");
+        info = utils.getInfo();
+        assertEquals("1", info.getCidrNotation());
+
+        utils = new SubnetUtils("192.168.0.1/8");
+        info = utils.getInfo();
+        assertEquals("8", info.getCidrNotation());
+
+        utils = new SubnetUtils("192.168.0.1/16");
+        info = utils.getInfo();
+        assertEquals("16", info.getCidrNotation());
+
+        utils = new SubnetUtils("192.168.0.1/24");
+        info = utils.getInfo();
+        assertEquals("24", info.getCidrNotation());
+
+        utils = new SubnetUtils("192.168.0.1/32");
+        info = utils.getInfo();
+        assertEquals("32", info.getCidrNotation());
+
+
+    }
 }

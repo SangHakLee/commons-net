@@ -141,6 +141,8 @@ public class SubnetUtils {
             return format(toArray(network));
         }
 
+        public String getCidrNotation()   {return String.valueOf(Integer.bitCount(netmask));}
+
         public String getNextAddress() {
             return format(toArray(address + 1));
         }
